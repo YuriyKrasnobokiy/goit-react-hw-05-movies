@@ -1,14 +1,16 @@
 import { SearchBar } from 'components/SearchBar';
-import { TrendLi, TrendList } from 'components/Trending.Styled';
+import toast, { Toaster } from 'react-hot-toast';
+
 import { searchMovie } from 'components/api';
 import React, { useEffect, useState } from 'react';
-import { Link, useLocation, useSearchParams } from 'react-router-dom';
-import { defaultImg } from './Home';
+
+import { MovieListMarkup } from '../components/MovieList';
+import { useSearchParams } from 'react-router-dom';
 
 const Movies = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const movieName = searchParams.get('movieName') ?? '';
-  const location = useLocation();
+
   const [gallarySearch, setGallarySearch] = useState([]);
 
   useEffect(() => {
@@ -25,46 +27,22 @@ const Movies = () => {
 
   const handlerSubmit = e => {
     e.preventDefault();
+
     const form = e.currentTarget;
+    if (form.elements.movieName.value === '') {
+      toast.error('Type movie name');
+      return;
+    }
     setSearchParams({ movieName: form.elements.movieName.value });
+
     form.reset();
   };
 
   return (
     <main>
       <SearchBar handlerSubmit={handlerSubmit} />
-
-      <TrendList>
-        {gallarySearch &&
-          gallarySearch.map(
-            ({
-              id,
-              title,
-              original_title,
-              original_name,
-              name,
-              poster_path,
-            }) => {
-              const viewTitle =
-                title || name || original_title || original_name;
-              return (
-                <TrendLi key={id}>
-                  <Link to={`/movies/${id}`} state={{ from: location }}>
-                    {viewTitle}
-                    <img
-                      src={
-                        poster_path
-                          ? `https://image.tmdb.org/t/p/w200${poster_path}`
-                          : defaultImg
-                      }
-                      alt={original_title}
-                    />
-                  </Link>
-                </TrendLi>
-              );
-            }
-          )}
-      </TrendList>
+      <MovieListMarkup movieItems={gallarySearch} />
+      <Toaster />
     </main>
   );
 };

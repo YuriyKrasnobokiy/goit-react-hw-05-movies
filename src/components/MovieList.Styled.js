@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const TrendList = styled.ul`
+export const MovieList = styled.ul`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 20px;
@@ -9,7 +9,7 @@ export const TrendList = styled.ul`
   margin: 0;
 `;
 
-export const TrendLi = styled.li`
+export const MovieListLi = styled.li`
   border: 1px solid #ccc;
   padding: 10px;
   text-align: center;
