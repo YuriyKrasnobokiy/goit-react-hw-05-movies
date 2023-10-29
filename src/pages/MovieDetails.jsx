@@ -1,15 +1,16 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { fetchMovie } from 'components/api';
-import { useEffect, useState } from 'react';
-import { Link, Outlet, useParams } from 'react-router-dom';
+import { useEffect, useRef, useState } from 'react';
+import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
 import { defaultImg } from './Home';
-import { FirstWrap, Wrap } from 'components/MovieDetails.Styled';
+import { Wrap } from 'components/MovieDetails.Styled';
 
 export const MovieDetails = () => {
   const { movieId } = useParams();
-
   const [movie, setMovie] = useState(0);
-
+  const location = useLocation();
+  const backLinkLocationRef = useRef(location.state?.from ?? '/');
+  console.log(location);
   useEffect(() => {
     if (!movieId) return;
     const getMovieId = async () => {
@@ -25,7 +26,8 @@ export const MovieDetails = () => {
   }, [movieId]);
 
   return (
-    <FirstWrap>
+    <div>
+      <Link to={backLinkLocationRef.current}>Back</Link>
       <Wrap>
         <div>
           <img
@@ -55,6 +57,6 @@ export const MovieDetails = () => {
         </li>
       </ul>
       <Outlet />
-    </FirstWrap>
+    </div>
   );
 };

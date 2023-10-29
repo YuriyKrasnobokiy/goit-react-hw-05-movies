@@ -2,13 +2,13 @@ import { SearchBar } from 'components/SearchBar';
 import { TrendLi, TrendList } from 'components/Trending.Styled';
 import { searchMovie } from 'components/api';
 import React, { useEffect, useState } from 'react';
-import { Link, useSearchParams } from 'react-router-dom';
+import { Link, useLocation, useSearchParams } from 'react-router-dom';
 import { defaultImg } from './Home';
 
 export const Movies = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const movieName = searchParams.get('movieName') ?? '';
-
+  const location = useLocation();
   const [gallarySearch, setGallarySearch] = useState([]);
 
   useEffect(() => {
@@ -33,6 +33,7 @@ export const Movies = () => {
   return (
     <main>
       <SearchBar handlerSubmit={handlerSubmit} />
+
       <TrendList>
         {gallarySearch &&
           gallarySearch.map(
@@ -48,7 +49,7 @@ export const Movies = () => {
                 title || name || original_title || original_name;
               return (
                 <TrendLi key={id}>
-                  <Link to={`/movies/${id}`}>
+                  <Link to={`/movies/${id}`} state={{ from: location }}>
                     {viewTitle}
                     <img
                       src={
