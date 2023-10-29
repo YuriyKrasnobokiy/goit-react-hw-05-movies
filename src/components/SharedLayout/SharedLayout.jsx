@@ -1,7 +1,7 @@
 import { NavLink, Outlet } from 'react-router-dom';
 import { Suspense } from 'react';
 import styled from 'styled-components';
-import { Loader } from './Loader';
+import { Loader } from '../Loader/Loader';
 
 const NavStyledLink = styled(NavLink)`
   &.active {

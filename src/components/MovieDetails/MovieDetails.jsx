@@ -2,9 +2,9 @@
 import { fetchMovie } from 'components/api';
 import { Suspense, useEffect, useRef, useState } from 'react';
 import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
-import { defaultImg } from './Home';
-import { Wrap } from 'components/MovieDetails.Styled';
-import { Loader } from 'components/Loader';
+import { defaultImg } from '../../pages/Home';
+import { Wrap } from 'components/MovieDetails/MovieDetails.Styled';
+import { Loader } from 'components/Loader/Loader';
 
 const MovieDetails = () => {
   const { movieId } = useParams();
@@ -44,9 +44,14 @@ const MovieDetails = () => {
           <h1>{movie.original_title}</h1>
           <h2>{movie.tagline}</h2>
           <h3>Release date: {movie.release_date}</h3>
-          <h2>Overview</h2>
+          <h3>Genres: </h3>
+          {movie.genres && Array.isArray(movie.genres) ? (
+            <p>{movie.genres.map(genre => genre.name).join(', ')}</p>
+          ) : (
+            <p>No genres available</p>
+          )}
+          <h3>Overview</h3>
           <p>{movie.overview}</p>
-          {/* <p>{movieId}</p> */}
         </div>
       </Wrap>
       <ul>

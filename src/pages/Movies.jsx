@@ -1,10 +1,10 @@
-import { SearchBar } from 'components/SearchBar';
+import { SearchBar } from 'components/SearchBar/SearchBar';
 import toast, { Toaster } from 'react-hot-toast';
 
 import { searchMovie } from 'components/api';
 import React, { useEffect, useState } from 'react';
 
-import { MovieListMarkup } from '../components/MovieList';
+import { MovieListMarkup } from '../components/MovieList/MovieList';
 import { useSearchParams } from 'react-router-dom';
 
 const Movies = () => {

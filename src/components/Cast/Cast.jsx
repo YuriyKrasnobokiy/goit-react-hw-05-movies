@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { fetchCast } from './api';
+import { fetchCast } from '../api';
 
 const Cast = () => {
   const [cast, setCast] = useState([]);
@@ -21,11 +21,12 @@ const Cast = () => {
   return (
     <div>
       <h2>Cast:</h2>
-      <ul>
-        {cast.map(actor => (
-          <li key={actor.id}>
-            <h3>{actor.original_name}</h3>
-            {actor.profile_path && (
+      {cast && cast.length > 0 ? (
+        <ul>
+          {cast.map(actor => (
+            <li key={actor.id}>
+              <h3>{actor.original_name}</h3>
+
               <img
                 src={
                   actor.profile_path
@@ -34,10 +35,12 @@ const Cast = () => {
                 }
                 alt={actor.original_name}
               />
-            )}
-          </li>
-        ))}
-      </ul>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        'Cast not found ☹'
+      )}
     </div>
   );
 };
