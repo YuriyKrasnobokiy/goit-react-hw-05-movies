@@ -6,7 +6,7 @@ import { fetchTrendingMov } from '../components/api';
 export const defaultImg =
   'https://ireland.apollo.olxcdn.com/v1/files/0iq0gb9ppip8-UA/image;s=200x300';
 
-export const Home = () => {
+const Home = () => {
   const [trendingsItems, setTrendingItems] = useState([]);
 
   useEffect(() => {
@@ -60,3 +60,4 @@ export const Home = () => {
     </div>
   );
 };
+export default Home;

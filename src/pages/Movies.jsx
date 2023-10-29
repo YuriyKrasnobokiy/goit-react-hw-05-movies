@@ -5,7 +5,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useLocation, useSearchParams } from 'react-router-dom';
 import { defaultImg } from './Home';
 
-export const Movies = () => {
+const Movies = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const movieName = searchParams.get('movieName') ?? '';
   const location = useLocation();
@@ -68,3 +68,4 @@ export const Movies = () => {
     </main>
   );
 };
+export default Movies;
