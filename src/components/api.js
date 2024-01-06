@@ -34,3 +34,8 @@ export const fetchReviews = async movieId => {
   const fetchedReviews = await axios.get(`movie/${movieId}/reviews`);
   return fetchedReviews.data.results;
 };
+
+export const fetchTrailer = async movieId => {
+  const fetchTrailer = await axios.get(`movie/${movieId}/videos`);
+  return fetchTrailer.data.results;
+};
