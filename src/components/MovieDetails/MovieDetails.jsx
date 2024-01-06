@@ -3,8 +3,14 @@ import { fetchMovie } from 'components/api';
 import { Suspense, useEffect, useRef, useState } from 'react';
 import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
 import { defaultImg } from '../../pages/Home';
-import { Wrap } from 'components/MovieDetails/MovieDetails.Styled';
+import {
+  MovieWrap,
+  DetailsTextWrapper,
+  DetailsWrapper,
+  Wrapper,
+} from 'components/MovieDetails/MovieDetails.Styled';
 import { Loader } from 'components/Loader/Loader';
+import MovieTrailer from 'components/Trailer/Trailer';
 
 const MovieDetails = () => {
   const { movieId } = useParams();
@@ -27,9 +33,9 @@ const MovieDetails = () => {
   }, [movieId]);
 
   return (
-    <div>
+    <Wrapper>
       <Link to={backLinkLocationRef.current}>Back</Link>
-      <Wrap>
+      <MovieWrap>
         <div>
           <img
             src={
@@ -40,20 +46,24 @@ const MovieDetails = () => {
             alt={movie.title}
           />
         </div>
-        <div>
-          <h1>{movie.original_title}</h1>
-          <h2>{movie.tagline}</h2>
-          <h3>Release date: {movie.release_date}</h3>
-          <h3>Genres: </h3>
-          {movie.genres && Array.isArray(movie.genres) ? (
-            <p>{movie.genres.map(genre => genre.name).join(', ')}</p>
-          ) : (
-            <p>No genres available</p>
-          )}
-          <h3>Overview</h3>
-          <p>{movie.overview}</p>
-        </div>
-      </Wrap>
+
+        <DetailsWrapper>
+          <DetailsTextWrapper>
+            <h1>{movie.original_title}</h1>
+            <h2>{movie.tagline}</h2>
+            <h3>Release date: {movie.release_date}</h3>
+            <h3>Genres: </h3>
+            {movie.genres && Array.isArray(movie.genres) ? (
+              <p>{movie.genres.map(genre => genre.name).join(', ')}</p>
+            ) : (
+              <p>No genres available</p>
+            )}
+            <h3>Overview</h3>
+            <p>{movie.overview}</p>
+          </DetailsTextWrapper>
+          <MovieTrailer movieId={movieId} />
+        </DetailsWrapper>
+      </MovieWrap>
       <ul>
         <li>
           <Link to="cast">Cast</Link>
@@ -65,7 +75,7 @@ const MovieDetails = () => {
       <Suspense fallback={<Loader />}>
         <Outlet />
       </Suspense>
-    </div>
+    </Wrapper>
   );
 };
 export default MovieDetails;
