@@ -2,6 +2,7 @@ import { NavLink, Outlet } from 'react-router-dom';
 import { Suspense } from 'react';
 import styled from 'styled-components';
 import { Loader } from '../Loader/Loader';
+import { HeaderText, Wrapper } from './SharedLayout.Styled';
 
 const NavStyledLink = styled(NavLink)`
   &.active {
@@ -11,8 +12,9 @@ const NavStyledLink = styled(NavLink)`
 
 export const SharedLayout = () => {
   return (
-    <div>
+    <Wrapper>
       <header>
+        <HeaderText>TrailerQuest: Відкрийте Світ Кіно</HeaderText>
         <nav>
           <NavStyledLink to="/">Home</NavStyledLink>
           <NavStyledLink to="/movies">Movies</NavStyledLink>
@@ -23,6 +25,6 @@ export const SharedLayout = () => {
           <Outlet />
         </Suspense>
       </main>
-    </div>
+    </Wrapper>
   );
 };
