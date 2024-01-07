@@ -39,11 +39,11 @@ const Movies = () => {
   };
 
   return (
-    <main>
+    <>
       <SearchBar handlerSubmit={handlerSubmit} />
       <MovieListMarkup movieItems={gallarySearch} />
       <Toaster />
-    </main>
+    </>
   );
 };
 export default Movies;

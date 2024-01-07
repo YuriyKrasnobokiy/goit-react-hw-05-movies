@@ -1,5 +1,10 @@
-import { Link, useLocation } from 'react-router-dom';
-import { MovieList, MovieListLi } from './MovieList.Styled';
+import { useLocation } from 'react-router-dom';
+import {
+  MovieList,
+  MovieListLi,
+  MovieListLink,
+  MovieListWrapper,
+} from './MovieList.Styled';
 
 export const MovieListMarkup = ({ movieItems }) => {
   const location = useLocation();
@@ -7,7 +12,7 @@ export const MovieListMarkup = ({ movieItems }) => {
     'https://ireland.apollo.olxcdn.com/v1/files/0iq0gb9ppip8-UA/image;s=200x300';
 
   return (
-    <div>
+    <MovieListWrapper>
       <MovieList>
         {movieItems &&
           movieItems.map(
@@ -23,7 +28,10 @@ export const MovieListMarkup = ({ movieItems }) => {
                 title || name || original_title || original_name;
               return (
                 <MovieListLi key={id}>
-                  <Link to={`/movies/${id}`} state={{ from: location }}>
+                  <MovieListLink
+                    to={`/movies/${id}`}
+                    state={{ from: location }}
+                  >
                     {viewTitle}
                     <img
                       src={
@@ -33,12 +41,12 @@ export const MovieListMarkup = ({ movieItems }) => {
                       }
                       alt={original_title}
                     />
-                  </Link>
+                  </MovieListLink>
                 </MovieListLi>
               );
             }
           )}
       </MovieList>
-    </div>
+    </MovieListWrapper>
   );
 };

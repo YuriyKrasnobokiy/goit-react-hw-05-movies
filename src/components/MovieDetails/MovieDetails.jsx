@@ -1,16 +1,21 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { fetchMovie } from 'components/api';
 import { Suspense, useEffect, useRef, useState } from 'react';
-import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
+import { Outlet, useLocation, useParams } from 'react-router-dom';
 import { defaultImg } from '../../pages/Home';
 import {
   MovieWrap,
   DetailsTextWrapper,
   DetailsWrapper,
   Wrapper,
+  BackLinkStyled,
+  DetailsLinkStyled,
+  DetailsUlStyled,
+  DetailsLiStyled,
 } from 'components/MovieDetails/MovieDetails.Styled';
 import { Loader } from 'components/Loader/Loader';
 import MovieTrailer from 'components/Trailer/Trailer';
+import { FaArrowLeft } from 'react-icons/fa';
 
 const MovieDetails = () => {
   const { movieId } = useParams();
@@ -34,7 +39,10 @@ const MovieDetails = () => {
 
   return (
     <Wrapper>
-      <Link to={backLinkLocationRef.current}>Back</Link>
+      <BackLinkStyled to={backLinkLocationRef.current}>
+        <FaArrowLeft />
+        Back
+      </BackLinkStyled>
       <MovieWrap>
         <div>
           <img
@@ -64,14 +72,14 @@ const MovieDetails = () => {
           <MovieTrailer movieId={movieId} />
         </DetailsWrapper>
       </MovieWrap>
-      <ul>
-        <li>
-          <Link to="cast">Cast</Link>
-        </li>
-        <li>
-          <Link to="reviews">Reviews</Link>
-        </li>
-      </ul>
+      <DetailsUlStyled>
+        <DetailsLiStyled>
+          <DetailsLinkStyled to="cast">Cast</DetailsLinkStyled>
+        </DetailsLiStyled>
+        <DetailsLiStyled>
+          <DetailsLinkStyled to="reviews">Reviews</DetailsLinkStyled>
+        </DetailsLiStyled>
+      </DetailsUlStyled>
       <Suspense fallback={<Loader />}>
         <Outlet />
       </Suspense>
