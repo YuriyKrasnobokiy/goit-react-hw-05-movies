@@ -4,6 +4,7 @@ import { Suspense } from 'react';
 import { Loader } from '../Loader/Loader';
 import {
   HeaderText,
+  HeaderWrapper,
   NavStyled,
   NavStyledLink,
   Wrapper,
@@ -13,11 +14,13 @@ export const SharedLayout = () => {
   return (
     <Wrapper>
       <header>
-        <NavStyled>
-          <NavStyledLink to="/">Home</NavStyledLink>
-          <NavStyledLink to="/movies">Movies</NavStyledLink>
-        </NavStyled>
-        <HeaderText>TrailerQuest: Discover the Cinema World</HeaderText>
+        <HeaderWrapper>
+          <NavStyled>
+            <NavStyledLink to="/">Home</NavStyledLink>
+            <NavStyledLink to="/movies">Movies</NavStyledLink>
+          </NavStyled>
+          <HeaderText>TrailerQuest: Discover the Cinema World</HeaderText>
+        </HeaderWrapper>
       </header>
       <main>
         <Suspense fallback={<Loader />}>
