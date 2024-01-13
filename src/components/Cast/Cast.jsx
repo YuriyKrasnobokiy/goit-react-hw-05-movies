@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { fetchCast } from '../api';
+import { CastLi, CastList, CastTitle, CastWrap } from './Cast.Styled';
 
 const Cast = () => {
   const [cast, setCast] = useState([]);
@@ -19,12 +20,12 @@ const Cast = () => {
   }, [movieId]);
 
   return (
-    <div>
-      <h2>Cast:</h2>
+    <CastWrap>
+      <CastTitle>Cast:</CastTitle>
       {cast && cast.length > 0 ? (
-        <ul>
+        <CastList>
           {cast.map(actor => (
-            <li key={actor.id}>
+            <CastLi key={actor.id}>
               <h3>{actor.original_name}</h3>
 
               <img
@@ -35,13 +36,13 @@ const Cast = () => {
                 }
                 alt={actor.original_name}
               />
-            </li>
+            </CastLi>
           ))}
-        </ul>
+        </CastList>
       ) : (
         'Cast not found ☹'
       )}
-    </div>
+    </CastWrap>
   );
 };
 export default Cast;

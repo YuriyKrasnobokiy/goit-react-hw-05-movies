@@ -12,6 +12,10 @@ import {
   DetailsLinkStyled,
   DetailsUlStyled,
   DetailsLiStyled,
+  MovieGenresWrap,
+  MovieTitleStyled,
+  MovieTaglineStyled,
+  MovieReleaseDateStyled,
 } from 'components/MovieDetails/MovieDetails.Styled';
 import { Loader } from 'components/Loader/Loader';
 import MovieTrailer from 'components/Trailer/Trailer';
@@ -57,15 +61,21 @@ const MovieDetails = () => {
 
         <DetailsWrapper>
           <DetailsTextWrapper>
-            <h1>{movie.original_title}</h1>
-            <h2>{movie.tagline}</h2>
-            <h3>Release date: {movie.release_date}</h3>
-            <h3>Genres: </h3>
-            {movie.genres && Array.isArray(movie.genres) ? (
-              <p>{movie.genres.map(genre => genre.name).join(', ')}</p>
-            ) : (
-              <p>No genres available</p>
-            )}
+            <MovieTitleStyled>{movie.original_title}</MovieTitleStyled>
+            <MovieTaglineStyled>
+              <i>{movie.tagline}</i>
+            </MovieTaglineStyled>
+            <MovieReleaseDateStyled>
+              Release date: {movie.release_date}
+            </MovieReleaseDateStyled>
+            <MovieGenresWrap>
+              <h3>Genres: </h3>
+              {movie.genres && Array.isArray(movie.genres) ? (
+                <p>{movie.genres.map(genre => genre.name).join(', ')}</p>
+              ) : (
+                <p>No genres available</p>
+              )}
+            </MovieGenresWrap>
             <h3>Overview</h3>
             <p>{movie.overview}</p>
           </DetailsTextWrapper>

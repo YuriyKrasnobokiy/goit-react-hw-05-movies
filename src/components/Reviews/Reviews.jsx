@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { fetchReviews } from '../api';
+import { ReviewTitle, ReviewsLi, ReviewsWrapper } from './Reviews.Styled';
 
 const Reviews = () => {
   const [reviews, setReviews] = useState([]);
@@ -19,22 +20,22 @@ const Reviews = () => {
   }, [movieId]);
 
   return (
-    <div>
-      <h2>Reviews:</h2>
+    <ReviewsWrapper>
+      <ReviewTitle>Reviews:</ReviewTitle>
 
       {reviews && reviews.length > 0 ? (
         <ul>
           {reviews.map(item => (
-            <li key={item.id}>
+            <ReviewsLi key={item.id}>
               <h3>Review by {item.author}</h3>
               <p>{item.content}</p>
-            </li>
+            </ReviewsLi>
           ))}
         </ul>
       ) : (
         'Reviews not found ☹'
       )}
-    </div>
+    </ReviewsWrapper>
   );
 };
 export default Reviews;

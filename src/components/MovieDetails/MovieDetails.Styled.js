@@ -23,16 +23,37 @@ export const BackLinkStyled = styled(Link)`
 
 export const MovieWrap = styled.div`
   display: flex;
-  /* justify-content: center; */
+  align-items: center;
   padding: 20px 0;
 `;
 
 export const DetailsWrapper = styled.div`
-  padding: 20px;
+  padding: 0 20px;
 `;
 
 export const DetailsTextWrapper = styled.div`
   margin-bottom: 20px;
+`;
+
+export const MovieTitleStyled = styled.h1`
+  margin-bottom: 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+`;
+
+export const MovieTaglineStyled = styled.h2`
+  margin-bottom: 10px;
+`;
+
+export const MovieReleaseDateStyled = styled.h3`
+  margin-bottom: 6px;
+`;
+
+export const MovieGenresWrap = styled.div`
+  display: flex;
+  align-items: baseline;
+  margin-bottom: 6px;
 `;
 
 export const DetailsUlStyled = styled.ul`
