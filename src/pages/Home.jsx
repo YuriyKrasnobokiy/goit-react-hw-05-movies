@@ -4,7 +4,7 @@ import { MovieListMarkup } from '../components/MovieList/MovieList';
 import { HomeText } from './Home.Styled';
 
 export const defaultImg =
-  'https://ireland.apollo.olxcdn.com/v1/files/0iq0gb9ppip8-UA/image;s=200x300';
+  'https://img.freepik.com/free-photo/image-icon-front-side_187299-39480.jpg?t=st=1710668854~exp=1710672454~hmac=d3a111eb521149c8bf1548d1ba9c4df4fdfccc7483865c11965ed188d2ee8b7b&w=200';
 
 const Home = () => {
   const [trendingsItems, setTrendingItems] = useState([]);

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { fetchCast } from '../api';
 import { CastLi, CastList, CastTitle, CastWrap } from './Cast.Styled';
+import { defaultImg } from 'pages/Home';
 
 const Cast = () => {
   const [cast, setCast] = useState([]);
@@ -32,7 +33,7 @@ const Cast = () => {
                 src={
                   actor.profile_path
                     ? `https://image.tmdb.org/t/p/w200${actor.profile_path}`
-                    : 'https://ireland.apollo.olxcdn.com/v1/files/0iq0gb9ppip8-UA/image;s=200x300'
+                    : defaultImg
                 }
                 alt={actor.original_name}
               />
