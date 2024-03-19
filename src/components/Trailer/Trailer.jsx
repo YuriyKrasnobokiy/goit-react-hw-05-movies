@@ -1,9 +1,9 @@
 import { fetchTrailer } from 'components/api';
 import React, { useState, useEffect } from 'react';
-// import axios from 'axios';
 
 const MovieTrailer = ({ movieId }) => {
   const [trailerKey, setTrailerKey] = useState('');
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     const getTrailer = async () => {
@@ -18,6 +18,22 @@ const MovieTrailer = ({ movieId }) => {
     };
 
     getTrailer();
+    //// Перевірка розміру вікна браузера для визначення мобільного пристрою ////
+    const handleResize = () => {
+      //// Встановлюю межу для моб пристроїв ////
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    //// Перевірка розмір вікна під час монтажу компонента ////
+    handleResize();
+
+    //// Додаю слухача подій для зміни розміру вікна ////
+    window.addEventListener('resize', handleResize);
+
+    //// Прибираю слухача подій під час розмонтажу компонента ////
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
   }, [movieId]);
 
   return (
@@ -25,8 +41,8 @@ const MovieTrailer = ({ movieId }) => {
       {trailerKey && (
         <iframe
           title="movie-trailer"
-          width="560"
-          height="315"
+          width={isMobile ? '280' : '560'}
+          height={isMobile ? '158' : '315'}
           src={`https://www.youtube.com/embed/${trailerKey}`}
           frameBorder="0"
           allowFullScreen
