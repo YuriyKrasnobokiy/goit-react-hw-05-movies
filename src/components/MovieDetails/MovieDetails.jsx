@@ -16,6 +16,7 @@ import {
   MovieTitleStyled,
   MovieTaglineStyled,
   MovieReleaseDateStyled,
+  MoviePoster,
 } from 'components/MovieDetails/MovieDetails.Styled';
 import { Loader } from 'components/Loader/Loader';
 import MovieTrailer from 'components/Trailer/Trailer';
@@ -26,7 +27,6 @@ const MovieDetails = () => {
   const [movie, setMovie] = useState(0);
   const location = useLocation();
   const backLinkLocationRef = useRef(location.state?.from ?? '/');
-  // console.log(location);
   useEffect(() => {
     if (!movieId) return;
     const getMovieId = async () => {
@@ -49,7 +49,7 @@ const MovieDetails = () => {
       </BackLinkStyled>
       <MovieWrap>
         <div>
-          <img
+          <MoviePoster
             src={
               movie.poster_path
                 ? `https://image.tmdb.org/t/p/w400${movie.poster_path}`

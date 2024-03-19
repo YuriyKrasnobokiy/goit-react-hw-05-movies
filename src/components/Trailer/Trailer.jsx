@@ -1,5 +1,6 @@
 import { fetchTrailer } from 'components/api';
 import React, { useState, useEffect } from 'react';
+import { TrailerWrapper } from './Trailer.Style';
 
 const MovieTrailer = ({ movieId }) => {
   const [trailerKey, setTrailerKey] = useState('');
@@ -21,7 +22,7 @@ const MovieTrailer = ({ movieId }) => {
     //// Перевірка розміру вікна браузера для визначення мобільного пристрою ////
     const handleResize = () => {
       //// Встановлюю межу для моб пристроїв ////
-      setIsMobile(window.innerWidth <= 768);
+      setIsMobile(window.innerWidth <= 767);
     };
 
     //// Перевірка розмір вікна під час монтажу компонента ////
@@ -37,7 +38,7 @@ const MovieTrailer = ({ movieId }) => {
   }, [movieId]);
 
   return (
-    <div>
+    <TrailerWrapper>
       {trailerKey && (
         <iframe
           title="movie-trailer"
@@ -48,7 +49,7 @@ const MovieTrailer = ({ movieId }) => {
           allowFullScreen
         ></iframe>
       )}
-    </div>
+    </TrailerWrapper>
   );
 };
 

@@ -25,6 +25,10 @@ export const MovieWrap = styled.div`
   display: flex;
   align-items: center;
   padding: 20px 0;
+
+  @media screen and (max-width: 1199px) {
+    flex-direction: column;
+  }
 `;
 
 export const DetailsWrapper = styled.div`
@@ -78,5 +82,12 @@ export const DetailsLinkStyled = styled(Link)`
 
   &:focus {
     color: rgba(128, 0, 128, 0.8);
+  }
+`;
+
+export const MoviePoster = styled.img`
+  max-width: 400px;
+  @media screen and (max-width: 767px) {
+    max-width: 300px;
   }
 `;
